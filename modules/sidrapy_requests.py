@@ -1,5 +1,6 @@
 import pandas as pd
 import sidrapy
+from modules.strings import normalizar_strings
 
 def sidrapy_populacao(nome,tabela,nivel_territorial,variavel,codigo_ibge,uf,colunas,classificacao):
     data = sidrapy.get_table(table_code=tabela,territorial_level=nivel_territorial,variable=variavel,ibge_territorial_code=codigo_ibge,classifications=classificacao) 
@@ -12,10 +13,9 @@ def sidrapy_populacao(nome,tabela,nivel_territorial,variavel,codigo_ibge,uf,colu
     filtro_estado = df["ESTADO"]==uf
 
     df = df[filtro_estado]
-    #df = df.iloc[:, [4,0,5,2,3]]
     df = df.rename(columns={'Município (Código)':'CODIGO'})
     for nomes in df.columns:
-        df = df.rename(columns={nomes:nomes.upper()})
+        df = df.rename(columns={nomes:normalizar_strings(nomes).upper()})
 
-    df.to_csv(f'data/raw/ibge/{nome}.csv')
+    df.to_csv(f'data/raw/ibge/{nome}.csv',index=False)
     print(f"\nArquivo {nome}.csv criado")
