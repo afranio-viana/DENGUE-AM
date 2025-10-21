@@ -8,6 +8,8 @@ idade2 = {'287':'93091,93092,93093,93094,93095,93096,93097,93098'}
 idade3 = {'287':'49108,49109,60040,60041,6653'}
 forma_abastecimento = {'301':'31471,72054,72055,72088,31472,72089,72090,72091'}
 existencia_canalizacao = {'1817':'72126,72127,72128'}
+destino_lixo = {'67':'2520,72120,72121,72122,72123,72124,1091'}
+
 
 
 sidrapy_populacao("populacao_2022","4709","6","93","all","AM",[5,6,4,10],None)
@@ -18,5 +20,6 @@ sidrapy_populacao('faixa_etaria2_2022','9514','6','93','all','AM',[5,6,12,10,4],
 sidrapy_populacao('faixa_etaria3_2022','9514','6','93','all','AM',[5,6,12,10,4],idade3)
 sidrapy_populacao('forma_abastecimento_2022','6804','6','381','all','AM',[5,6,12,10,4],forma_abastecimento)
 sidrapy_populacao('existencia_canalizacao_2022','6804','6','381','all','AM',[5,6,12,10,4],existencia_canalizacao)
+sidrapy_populacao('destino_lixo_2022','6892','6','381','all','AM',[5,6,12,10,4],destino_lixo)
 
 
