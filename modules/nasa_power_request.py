@@ -22,4 +22,4 @@ def nasa_power_mensal(municipio_pd,inicio,fim):
             #print(f"\n{iterador}") 
         print("Arquivos criados")
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        print(f"Ocorreu um erro: {e}")
