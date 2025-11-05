@@ -9,7 +9,10 @@ clean AS (
         "ESTADO" AS estado,
         "CODIGO"::text AS codigo_municipio,
         REGEXP_REPLACE(TRIM(LOWER("MUNICIPIO")),'\s+',' ','g') as municipio,
-        "SEXO" AS genero,
+        CASE
+            WHEN "SEXO" =  'Homens' THEN 'MASCULINO'
+            ELSE 'FEMININO'
+        END AS genero,
         COALESCE("VALOR",0)::int AS pop_genero,
         "ANO"::text AS ano
     FROM raw_table
