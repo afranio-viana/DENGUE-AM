@@ -11,3 +11,4 @@ sources:
       - name: faixa_etaria3_2022
       - name: genero_2022
       - name: forma_abastecimento_2022
+      - name: existencia_canalizacao_2022
