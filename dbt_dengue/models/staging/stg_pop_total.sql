@@ -7,7 +7,7 @@ WITH raw_table AS (
 clean AS (
     SELECT
         raw_table."ESTADO" AS estado,
-        (raw_table."CODIGO")::text AS CODIGO_MUNICIPIO,
+        (raw_table."CODIGO")::text AS codigo_municipio,
         REGEXP_REPLACE(TRIM(LOWER("MUNICIPIO")),'\s+',' ','g') as municipio,
         COALESCE("VALOR",0) AS pop_total,
         (raw_table."ANO")::text AS ano

@@ -6,3 +6,6 @@ sources:
     tables:
       - name: infodengue_am_2022
       - name: populacao_2022
+      - name: faixa_etaria1_2022
+      - name: faixa_etaria2_2022
+      - name: faixa_etaria3_2022
