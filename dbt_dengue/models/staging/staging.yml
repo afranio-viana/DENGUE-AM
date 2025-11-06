@@ -20,3 +20,4 @@ sources:
       - name: t2m_min_2022
       - name: t2m_max_2022
       - name: prectotcorr_2022
+      - name: densidade_demografica_2022
