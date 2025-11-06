@@ -19,3 +19,4 @@ sources:
       - name: rendimento_medio3_2022
       - name: t2m_min_2022
       - name: t2m_max_2022
+      - name: prectotcorr_2022
