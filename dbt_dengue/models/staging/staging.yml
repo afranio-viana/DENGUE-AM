@@ -14,3 +14,6 @@ sources:
       - name: existencia_canalizacao_2022
       - name: destino_lixo_2022
       - name: alfabetizados_2022
+      - name: rendimento_medio1_2022
+      - name: rendimento_medio2_2022
+      - name: rendimento_medio3_2022
