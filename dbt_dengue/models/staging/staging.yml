@@ -12,3 +12,4 @@ sources:
       - name: genero_2022
       - name: forma_abastecimento_2022
       - name: existencia_canalizacao_2022
+      - name: destino_lixo_2022
