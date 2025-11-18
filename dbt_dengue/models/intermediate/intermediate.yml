@@ -1,0 +1,10 @@
+version: 1
+
+sources:
+  - name: staging
+    schema: staging
+    tables:
+      - name: stg_dengue
+      - name: stg_precipitacao_media
+      - name: stg_temperatura_maxima_media
+      - name: stg_temperatura_minima_media
