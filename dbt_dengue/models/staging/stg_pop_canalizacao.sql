@@ -28,8 +28,33 @@ sum_canalizacao AS (
         SUM(pop_canalizacao) AS pop_canalizacao
     FROM clean
     GROUP BY estado, codigo_municipio, municipio, ano, tipo_canalizacao
+),
+
+sum_canalizacao_total AS (
+    SELECT
+        estado,
+        codigo_municipio,
+        municipio,
+        ano,
+        SUM(pop_canalizacao) AS pop_canalizacao_total
+    FROM sum_canalizacao
+    GROUP BY estado, codigo_municipio, municipio, ano
+),
+
+join_canalizacao AS (
+    SELECT
+        sc.estado,
+        sc.codigo_municipio,
+        sc.municipio,
+        sc.ano,
+        sc.tipo_canalizacao,
+        sc.pop_canalizacao,
+        sct.pop_canalizacao_total
+    FROM sum_canalizacao sc
+    LEFT JOIN sum_canalizacao_total sct
+    ON sct.codigo_municipio = sc.codigo_municipio
 )
 
 SELECT
     *
-FROM sum_canalizacao
+FROM join_canalizacao
