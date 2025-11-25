@@ -9,12 +9,27 @@ clean AS (
         "ESTADO" AS estado,
         "CODIGO"::text AS codigo_municipio,
         REGEXP_REPLACE(TRIM(LOWER("MUNICIPIO")),'\s+',' ','g') AS municipio,
-        "EXISTENCIA_DE_CANALIZACAO_DE_AGUA" AS tipo_canalizacao,
         COALESCE("VALOR",0)::int AS pop_canalizacao,
-        "ANO" AS ano
+        "ANO" AS ano,
+        CASE
+            WHEN "EXISTENCIA_DE_CANALIZACAO_DE_AGUA" = 'Sem água canalizada' THEN 'NAO_CANALIZADA'
+            ELSE 'CANALIZADA'
+        END AS tipo_canalizacao
     FROM raw_table
+),
+
+sum_canalizacao AS (
+    SELECT
+        estado,
+        codigo_municipio,
+        municipio,
+        ano,
+        tipo_canalizacao,
+        SUM(pop_canalizacao) AS pop_canalizacao
+    FROM clean
+    GROUP BY estado, codigo_municipio, municipio, ano, tipo_canalizacao
 )
 
 SELECT
     *
-FROM clean
+FROM sum_canalizacao
