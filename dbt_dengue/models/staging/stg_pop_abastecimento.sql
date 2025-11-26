@@ -9,18 +9,52 @@ clean as (
         "ESTADO" AS estado,
         "CODIGO"::text AS codigo_municipio,
         REGEXP_REPLACE(TRIM(LOWER("MUNICIPIO")),'\s+',' ','g') AS municipio,
-        "PRINCIPAL_FORMA_DE_ABASTECIMENTO_DE_AGUA" AS forma_abastecimento_agua,
+        CASE
+            WHEN "PRINCIPAL_FORMA_DE_ABASTECIMENTO_DE_AGUA" = 'Rede geral de distribuição' THEN 'REDE_GERAL'
+            ELSE 'OUTROS'
+        END AS forma_abastecimento_agua,
         COALESCE(NULLIF(TRIM("VALOR"),'-'),'0')::int AS pop_forma_abastecimento_agua,
         "ANO"::text AS ano
     FROM raw_table
 ),
 
-group_abastecimento AS (
-    SELECT "PRINCIPAL_FORMA_DE_ABASTECIMENTO_DE_AGUA",COUNT(*) AS qtd
-    FROM raw_table
-    GROUP BY "PRINCIPAL_FORMA_DE_ABASTECIMENTO_DE_AGUA"
+sum_abastecimento AS (
+    SELECT
+        estado,
+        codigo_municipio,
+        municipio,
+        forma_abastecimento_agua,
+        SUM(pop_forma_abastecimento_agua)::float AS pop_forma_abastecimento_agua,
+        ano
+    FROM clean
+    GROUP BY estado,codigo_municipio,municipio,forma_abastecimento_agua,ano
+),
+
+sum_abastecimento_total AS (
+    SELECT
+        estado,
+        codigo_municipio,
+        municipio,
+        SUM(pop_forma_abastecimento_agua)::float AS pop_forma_abastecimento_agua_total,
+        ano
+    FROM clean
+    GROUP BY estado,codigo_municipio,municipio,ano
+),
+
+join_abastecimento AS (
+    SELECT
+        sa.estado,
+        sa.codigo_municipio,
+        sa.municipio,
+        sa.forma_abastecimento_agua,
+        sa.pop_forma_abastecimento_agua,
+        sat.pop_forma_abastecimento_agua_total,
+        sa.ano
+    FROM sum_abastecimento sa
+    LEFT JOIN sum_abastecimento_total sat
+    ON sa.codigo_municipio = sat.codigo_municipio
 )
 
 SELECT
     *
-FROM clean
+FROM join_abastecimento
