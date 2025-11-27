@@ -8,3 +8,12 @@ sources:
       - name: stg_precipitacao_media
       - name: stg_temperatura_maxima_media
       - name: stg_temperatura_minima_media
+      - name: stg_pop_total
+      - name: stg_pop_densidade_demografica
+      - name: stg_pop_alfabetizacao
+      - name: stg_pop_canalizacao
+      - name: stg_pop_abastecimento
+      - name: stg_pop_destino_lixo
+      - name: stg_pop_genero
+      - name: stg_pop_faixa_etaria
+      - name: stg_pop_rendimento
