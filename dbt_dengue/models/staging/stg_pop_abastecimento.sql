@@ -52,7 +52,7 @@ join_abastecimento AS (
         sa.ano
     FROM sum_abastecimento sa
     LEFT JOIN sum_abastecimento_total sat
-    ON sa.codigo_municipio = sat.codigo_municipio
+    ON sa.codigo_municipio = sat.codigo_municipio AND sa.ano = sat.ano
 )
 
 SELECT

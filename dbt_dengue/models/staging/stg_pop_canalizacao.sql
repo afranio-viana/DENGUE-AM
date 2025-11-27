@@ -52,7 +52,7 @@ join_canalizacao AS (
         sct.pop_canalizacao_total
     FROM sum_canalizacao sc
     LEFT JOIN sum_canalizacao_total sct
-    ON sct.codigo_municipio = sc.codigo_municipio
+    ON sct.codigo_municipio = sc.codigo_municipio AND sct.ano = sc.ano
 )
 
 SELECT

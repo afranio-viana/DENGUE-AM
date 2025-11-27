@@ -52,7 +52,7 @@ join_destino_lixo AS (
         sdl.ano
     FROM sum_destino_lixo sdl
     LEFT join sum_destino_lixo_total sdlt
-    ON sdl.codigo_municipio = sdlt.codigo_municipio
+    ON sdl.codigo_municipio = sdlt.codigo_municipio AND sdl.ano = sdlt.ano
 )
 
 SELECT
