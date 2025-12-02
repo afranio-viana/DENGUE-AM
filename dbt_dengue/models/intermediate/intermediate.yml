@@ -17,3 +17,8 @@ sources:
       - name: stg_pop_genero
       - name: stg_pop_faixa_etaria
       - name: stg_pop_rendimento
+  - name: intermediate
+    schema: intermediate
+    tables:
+      - name: int_casos_pop
+      - name: int_casos_clima
