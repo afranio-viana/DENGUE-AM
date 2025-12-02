@@ -45,6 +45,7 @@ lagged_base AS (
         temperatura_media_maxima_mensal,
         temperatura_media_minima_mensal,
         variacao_temperatura,
+        ano,
         COALESCE(LAG(casos_dengue,1) OVER (PARTITION BY municipio ORDER BY ano_mes),0)::int AS lag_casos_1m,
         COALESCE(LAG(casos_dengue,2) OVER (PARTITION BY municipio ORDER BY ano_mes),0)::int AS lag_casos_2m,
         COALESCE(LAG(casos_dengue,3) OVER (PARTITION BY municipio ORDER BY ano_mes),0)::int AS lag_casos_3m,
